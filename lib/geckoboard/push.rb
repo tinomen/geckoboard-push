@@ -13,11 +13,10 @@ module Geckoboard
     # Custom error type for handling API errors
     class Error < Exception; end
 
-    @base_uri = 'https://push.geckoboard.com'
-
     # Initializes the push object for a specific widget
     def initialize(widget_key)
       @widget_key = widget_key
+      @base_uri = 'https://push.geckoboard.com'
     end
 
     # Makes a call to Geckoboard to push data to the current widget
