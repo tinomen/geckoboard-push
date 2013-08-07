@@ -50,6 +50,16 @@ module Geckoboard
       self.push(:item => data)
     end
 
+    # Items should be an array of hashhes, each hash containing:
+    # - text
+    # - highlight (true or false, optional)
+    # - name (label visible only on 2x2 widget size, optional)
+    # - color (any css color, optional)
+    # - description (optional)
+    def list(items)
+      self.push(:item => items)
+    end
+
     # Red, amber and green should be values
     def rag(red, amber, green)
       self.push(:item => [{:value => red}, {:value => amber}, {:value => green}])
