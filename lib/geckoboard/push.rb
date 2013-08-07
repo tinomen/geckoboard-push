@@ -23,7 +23,7 @@ module Geckoboard
     def push(data)
       raise Geckoboard::Push::Error.new("Api key not configured.") if Geckoboard::Push.api_key.nil? || Geckoboard::Push.api_key.empty?
       result = JSON.parse(HTTPClient.new.post("#{@base_uri}/#{Geckoboard::Push.api_version || 'v1'}/send/#{@widget_key}", {:body => {:api_key => Geckoboard::Push.api_key, :data => data}.to_json}).body)
-      raise Geckoboard::Push::Error.new(result["error"]) unless result["success"]
+      raise Geckoboard::Push::Error.new(result["message"] || result["error"]) unless result["success"]
       result["success"]
     end
 
